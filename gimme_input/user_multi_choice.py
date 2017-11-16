@@ -1,4 +1,5 @@
-
+from .resolvable import Resolvable
+import sys
 
 class UserMultiChoice( Resolvable):
 	'''

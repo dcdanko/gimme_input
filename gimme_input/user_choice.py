@@ -1,3 +1,6 @@
+from .resolvable import Resolvable
+import sys
+
 class UserChoice(Resolvable):
 	'''
 	Let a user pick a choice from a set of options.
@@ -23,7 +26,7 @@ class UserChoice(Resolvable):
 
 		elif len(self.opts) == 0 and not self.new:
 			sys.stdout.write('No options for {} found.\n'.format(self.name))
-			sys.exit(1)
+			raise UserInputError('No options.')
 			
 		sys.stdout.write('\tPlease select an option for {}:\n'.format(self.name))
 		for i, opt in enumerate(self.opts):

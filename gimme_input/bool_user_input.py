@@ -1,5 +1,5 @@
+from .resolvable import Resolvable
 import sys
-import os
 
 class BoolUserInput( Resolvable):
 	'''

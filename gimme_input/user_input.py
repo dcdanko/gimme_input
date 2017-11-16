@@ -1,4 +1,6 @@
-
+from .resolvable import Resolvable
+import sys
+from .input_grabbers import out_input
 
 class UserInput( Resolvable):
 	'''
@@ -25,7 +27,10 @@ class UserInput( Resolvable):
 			return str(self.default)
 		try_again = True
 		while try_again:
-			inp = out_input(self.prompt + ' [{}]: '.format(self.default))
+			if self.default is None:
+				inp = out_input(self.prompt + ': ')
+			else:
+				inp = out_input(self.prompt + ' [{}]: '.format(self.default))
 			try_again = False
 			if not inp: # use the default
 				if self.default is not None:

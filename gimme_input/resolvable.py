@@ -1,6 +1,7 @@
 
 
 class Resolvable:
+
 	def __init__(self):
 		self.resolved = False
 		self.resolved_val = None
@@ -13,3 +14,6 @@ class Resolvable:
 		self.resolved_val = res
 		self.resolved = True
 		return res
+
+	def _resolve(self, useDefaults, fineControl):
+		raise NotImplementedError()
