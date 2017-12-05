@@ -4,7 +4,7 @@ from .input_grabbers import out_input
 
 class UserInput( Resolvable):
 	'''
-    Lets a user input a string at a prompt.
+        Lets a user input a string at a prompt.
 
 	On resolution this will return a string.
 

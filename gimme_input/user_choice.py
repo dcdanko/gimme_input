@@ -19,9 +19,9 @@ class UserChoice(Resolvable):
 		self.new = new
 		
 	def _resolve(self, useDefaults, fineControl):
-		if (len(self.opts) == 1 and not self.new) or 
-			useDefaults or 
-			(self.fineOnly and not fineControl):
+		if ((len(self.opts) == 1 and not self.new) 
+			or useDefaults 
+			or (self.fineOnly and not fineControl)):
 			return self.opts[0]
 
 		elif len(self.opts) == 0 and not self.new:
