@@ -11,7 +11,8 @@ setuptools.setup(
     description="A library of useful functions to get input from users for command line programs.",
     long_description=open('README.rst').read(),
 
-    packages=setuptools.find_packages(),
+    packages=['gimme_input'],
+    package_dir={'gimme_input': 'gimme_input'},
 
     install_requires=[],
 
