@@ -1,5 +1,7 @@
 from .resolvable import Resolvable
 import sys
+from .input_grabbers import *
+
 
 class UserMultiChoice( Resolvable):
 	'''
