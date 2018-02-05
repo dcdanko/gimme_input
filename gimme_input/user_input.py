@@ -1,6 +1,7 @@
 from .resolvable import Resolvable
 import sys
-from .input_grabbers import out_input
+from .input_grabbers import out_input, err_input
+
 
 class UserInput( Resolvable):
 	'''
