@@ -4,39 +4,47 @@ import sys
 from .input_grabbers import *
 
 
-
-class UserMultiChoice( Resolvable):
+class UserMultiChoice(Resolvable):
     '''
     lets a user select may options from a list
 
     On resolution this will return a list of options
 
     'new' may be assigned to a function that will be called
-    if the user selects new. This can allow subwizards that create new 
-    choices. Multiple calls to new() are allowed and all results will be returned
+    if the user selects new. This can allow subwizards that create new
+    choices. Multiple calls to new() are allowed and all results will
+    be returned
     '''
-    def __init__(self, name, options, new=None, fineControlOnly=False):
+
+    def __init__(self, name, options,
+                 new=None,
+                 fineControlOnly=False,
+                 display=lambda x: x):
         super(UserMultiChoice, self).__init__()
         self.name = name
         self.opts = [el for el in options]
-        self.fineOnly=fineControlOnly
+        self.fineOnly = fineControlOnly
         self.new = new
+        self.display = display
 
     def _resolve(self, useDefaults, fineControl):
-        if (len(self.opts) == 1 and not self.new) or useDefaults or (self.fineOnly and not fineControl):
+        if ((len(self.opts) == 1 and not self.new) or
+            useDefaults or
+            (self.fineOnly and not fineControl)):
             return [self.opts[0]]
         elif len(self.opts) == 0 and not self.new:
-            stdout.write('No options for {} found.\n'.format(self.name))
-            exit(1)
+            sys.stdout.write('No options for {} found.\n'.format(self.name))
+            sys.exit(1)
 
         choices = []
         select_more_refs = True
         while select_more_refs:
-            stdout.write('\tPlease select an option for {}:\n'.format(self.name))
+            msg = '\tPlease select an option for {}:\n'
+            stdout.write(msg.format(self.name))
             for i, opt in enumerate(self.opts):
-                stdout.write('\t\t[{}] {}\n'.format(i, opt))
+                sys.stdout.write('\t\t[{}] {}\n'.format(i, self.display(opt)))
             if self.new:
-                stdout.write('\t\t[{}] Pick new\n'.format( len(self.opts)))
+                stdout.write('\t\t[{}] Pick new\n'.format(len(self.opts)))
             choice = out_input('\tPlease enter the index of your choice [0]: ')
             try:
                 choice = int(choice)
