@@ -1,0 +1,13 @@
+language: python
+env:
+ - TOXENV=py32
+ - TOXENV=py33
+ - TOXENV=py34
+ - TOXENV=py35
+ - TOXENV=py36
+cache: pip
+install:
+ - pip install tox
+script:
+ - tox -e $TOXENV
+ 
