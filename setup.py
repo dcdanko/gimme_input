@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="gimme_input",
-    version="0.1.1",
+    version="1.0.0",
     url="https://github.com/dcdanko/gimme_input",
 
     author="David C. Danko",
