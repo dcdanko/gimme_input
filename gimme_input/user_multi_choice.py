@@ -58,6 +58,7 @@ class UserMultiChoice(Resolvable):
             if 'y' not in more.lower():
                 select_more_refs = False
 
-        chosenStr = ' '.join([str(choice) for choice in choices])
+        chosenStr = [str(self.display(choice)) for choice in choices]
+        chosenStr = ' '.join(chosenStr)
         stdout.write('Chose: {}\n'.format(chosenStr))
         return choices
